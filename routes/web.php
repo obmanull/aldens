@@ -26,3 +26,19 @@ Route::group(
     }
 );
 
+Route::group(
+    [
+        'middleware' => ['auth', 'verified'],
+        'prefix' => 'admin',
+        'as' => 'admin.',
+        'namespace' => 'Admin',
+    ],
+    function () {
+        Route::get('/', 'HomeController@index')->name('home');
+
+        Route::get('/users', 'UsersController@index')->name('users');
+        Route::get('/users/{id]', 'UsersController@show')->name('users.show');
+
+    }
+);
+
