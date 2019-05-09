@@ -17,7 +17,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('admin.users', $users = User::all());
+        $users = User::orderByDesc('created_at')->get();
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -40,18 +41,7 @@ class UsersController extends Controller
     {
         $user = User::create($request->all());
 
-        return redirect()->route('admin.users.show', $user);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        return view('admin.users.show', $user);
+        return redirect()->route('admin.users.edit', $user);
     }
 
     /**
@@ -62,7 +52,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', $user);
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -76,7 +66,7 @@ class UsersController extends Controller
     {
         $user->update($request->all());
 
-        return redirect()->route('admin.users.show', $user);
+        return redirect()->route('admin.users.index', $user);
     }
 
     /**
@@ -88,6 +78,6 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users');
+        return redirect()->route('admin.users.index');
     }
 }

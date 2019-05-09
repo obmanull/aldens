@@ -34,11 +34,8 @@ Route::group(
         'namespace' => 'Admin',
     ],
     function () {
-        Route::get('/', 'HomeController@index')->name('home');
-
-        Route::get('/users', 'UsersController@index')->name('users');
-        Route::get('/users/{id]', 'UsersController@show')->name('users.show');
-
+        Route::get('/home', 'HomeController@index')->name('home');
+        Route::resource('users', 'UsersController');
     }
 );
 
