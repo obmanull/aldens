@@ -1,4 +1,9 @@
 @extends('layouts.admin')
+
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('admin.users.edit', $user) }}
+@endsection
+
 @section('content')
 
     <div class="row">

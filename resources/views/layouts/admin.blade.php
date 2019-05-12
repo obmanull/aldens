@@ -30,9 +30,9 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 <!-- preloader area start -->
-<div id="preloader">
-    <div class="loader"></div>
-</div>
+{{--<div id="preloader">--}}
+{{--    <div class="loader"></div>--}}
+{{--</div>--}}
 <!-- preloader area end -->
 <!-- page container area start -->
 <div class="page-container">
@@ -47,7 +47,7 @@
             <div class="menu-inner">
                 <nav>
                     <ul class="metismenu" id="menu">
-                        <li><a href="{{ route('admin.home') }}"><i class="ti-dashboard"></i> <span>dashboard</span></a>
+                        <li><a href="{{ route('admin.dashboard') }}"><i class="ti-dashboard"></i> <span>dashboard</span></a>
                         </li>
                         <li><a href="{{ route('admin.users.index') }}"><i class="ti-user"></i> <span>Users</span></a>
                         </li>
@@ -155,65 +155,6 @@
                                             <span>3:15 PM</span>
                                         </div>
                                     </a>
-                                    <a href="#" class="notify-item">
-                                        <div class="notify-thumb">
-                                            <img src="{{ asset('admin/images/author/author-img2.jpg') }}" alt="image">
-                                        </div>
-                                        <div class="notify-text">
-                                            <p>Aglae Mayer</p>
-                                            <span class="msg">When you can connect with me...</span>
-                                            <span>3:15 PM</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="notify-item">
-                                        <div class="notify-thumb">
-                                            <img src="{{ asset('admin/images/author/author-img3.jpg') }}" alt="image">
-                                        </div>
-                                        <div class="notify-text">
-                                            <p>Aglae Mayer</p>
-                                            <span class="msg">I missed you so much...</span>
-                                            <span>3:15 PM</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="notify-item">
-                                        <div class="notify-thumb">
-                                            <img src="{{ asset('admin/images/author/author-img4.jpg')}}" alt="image">
-                                        </div>
-                                        <div class="notify-text">
-                                            <p>Aglae Mayer</p>
-                                            <span class="msg">Your product is completely Ready...</span>
-                                            <span>3:15 PM</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="notify-item">
-                                        <div class="notify-thumb">
-                                            <img src="assets/images/author/author-img2.jpg" alt="image">
-                                        </div>
-                                        <div class="notify-text">
-                                            <p>Aglae Mayer</p>
-                                            <span class="msg">Hey I am waiting for you...</span>
-                                            <span>3:15 PM</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="notify-item">
-                                        <div class="notify-thumb">
-                                            <img src="assets/images/author/author-img1.jpg" alt="image">
-                                        </div>
-                                        <div class="notify-text">
-                                            <p>Aglae Mayer</p>
-                                            <span class="msg">Hey I am waiting for you...</span>
-                                            <span>3:15 PM</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="notify-item">
-                                        <div class="notify-thumb">
-                                            <img src="assets/images/author/author-img3.jpg" alt="image">
-                                        </div>
-                                        <div class="notify-text">
-                                            <p>Aglae Mayer</p>
-                                            <span class="msg">Hey I am waiting for you...</span>
-                                            <span>3:15 PM</span>
-                                        </div>
                                     </a>
                                 </div>
                             </div>
@@ -230,13 +171,10 @@
         <div class="page-title-area">
             <div class="row align-items-center">
                 <div class="col-sm-6">
-                    <div class="breadcrumbs-area clearfix">
-                        <h4 class="page-title pull-left">Dashboard</h4>
-                        <ul class="breadcrumbs pull-left">
-                            <li><a href="index.html">Home</a></li>
-                            <li><span>Dashboard</span></li>
-                        </ul>
-                    </div>
+                    @section('breadcrumbs')
+                        {{ Breadcrumbs::render() }}
+                    @endsection
+                    @yield('breadcrumbs')
                 </div>
                 <div class="col-sm-6 clearfix">
                     <div class="user-profile pull-right">
@@ -471,9 +409,9 @@
 </script>
 <!-- all line chart activation -->
 <script src="{{ asset('admin/js/line-chart.js') }}"></script>
-<!-- all pie chart -->
+{{--<!-- all pie chart -->--}}
 <script src="{{ asset('admin/js/pie-chart.js') }}"></script>
-<!-- others plugins -->
+{{--<!-- others plugins -->--}}
 <script src="{{ asset('admin/js/plugins.js') }}"></script>
 <script src="{{ asset('admin/js/scripts.js') }}"></script>
 </body>
