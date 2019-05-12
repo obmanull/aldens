@@ -33,8 +33,20 @@ class RegisterTest extends TestCase
 
         self::assertNotEmpty($user->password);
         self::assertNotEquals($password, $user->password);
+    }
 
-        self::assertTrue($user->isWait());
-        self::assertFalse($user->isActive());
+    public function testVerify(): void
+    {
+        $user = User::register(
+            $name = 'alex',
+            $email = 'alex@mail.ru',
+            $password = 'password',
+            );
+
+        self::assertFalse($user->isVerified());
+
+        $user->markEmailAsVerified();
+
+        self::assertTrue($user->isVerified());
     }
 }

@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Hash;
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property int $status
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User newQuery()
@@ -41,16 +40,13 @@ class User extends Authenticatable  implements MustVerifyEmail
 {
     use Notifiable;
 
-    const STATUS_WAIT = 1;
-    const STATUS_ACTIVE = 2;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'status'
+        'name', 'email', 'password'
     ];
 
     /**
@@ -72,8 +68,6 @@ class User extends Authenticatable  implements MustVerifyEmail
     ];
 
     /**
-     * Create user with wait status
-     *
      * @param $name
      * @param $email
      * @param $password
@@ -85,22 +79,14 @@ class User extends Authenticatable  implements MustVerifyEmail
             'name' => $name,
             'email' => $email,
             'password' => Hash::make($password),
-            'status' => self::STATUS_WAIT,
         ]);
     }
 
     /**
      * @return bool
      */
-    public function isActive(): bool
+    public function isVerified(): bool
     {
-        return $this->status === self::STATUS_ACTIVE;
-    }
-    /**
-     * @return bool
-     */
-    public function isWait(): bool
-    {
-        return $this->status === self::STATUS_WAIT;
+        return $this->email_verified_at !== null;
     }
 }
