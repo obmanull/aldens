@@ -2,12 +2,14 @@
 
 namespace App\Entities;
 
+use App\Exceptions\InvalidRoleException;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\Boolean;
 use Illuminate\Support\Facades\Hash;
+use App\Exceptions\RoleAlreadyException;
 
 
 /**
@@ -35,18 +37,22 @@ use Illuminate\Support\Facades\Hash;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $role
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User whereRole($value)
  */
 class User extends Authenticatable  implements MustVerifyEmail
 {
     use Notifiable;
 
+    const ROLE_USER = 1;
+    const ROLE_ADMIN = 2;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password', 'role'
     ];
 
     /**
@@ -67,6 +73,23 @@ class User extends Authenticatable  implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    static public function rolesList(): array
+    {
+        return [
+            self::ROLE_USER => 'User',
+            self::ROLE_ADMIN => 'Admin',
+        ];
+    }
+
+    public function getRoleNameAttribute()
+    {
+        if (!array_key_exists($this->role, self::rolesList())) {
+            throw new InvalidRoleException('Undefined role "' . $this->role . '"');
+        }
+
+        return self::rolesList()[$this->role];
+    }
+
     /**
      * @param $name
      * @param $email
@@ -79,6 +102,7 @@ class User extends Authenticatable  implements MustVerifyEmail
             'name' => $name,
             'email' => $email,
             'password' => Hash::make($password),
+            'role' => User::ROLE_USER,
         ]);
     }
 
@@ -88,5 +112,25 @@ class User extends Authenticatable  implements MustVerifyEmail
     public function isVerified(): bool
     {
         return $this->email_verified_at !== null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function changeRole(int $role)
+    {
+        if (!array_key_exists($role, self::rolesList())) {
+            throw new InvalidRoleException('Undefined role "' . $role . '"');
+        }
+        if ($role === $this->role) {
+            throw new RoleAlreadyException('Role is already assigned.');
+        }
+
+        $this->update(['role' => $role]);
     }
 }

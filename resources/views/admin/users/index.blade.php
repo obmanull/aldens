@@ -14,6 +14,7 @@
                                     <th scope="col">ID</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">date</th>
+                                    <th scope="col">Role</th>
                                     <th scope="col">verified</th>
                                     <th scope="col">action</th>
                                 </tr>
@@ -25,6 +26,7 @@
                                         <th scope="row">{{ $user->id }}</th>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->created_at->diffForHumans() }}</td>
+                                        <td>{{ $user->role_name }}</td>
                                         <td>
                                             @if(! empty($user->email_verified_at))
                                                 <i class="ti-check"></i>

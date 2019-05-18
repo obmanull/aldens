@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.15 on 2019-05-10 07:03:05.
+ * Generated for Laravel 5.8.15 on 2019-05-17 10:25:22.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -15123,7 +15123,7 @@ namespace Barryvdh\Debugbar {
  
 }
 
-namespace DaveJamesMiller\Breadcrumbs\Facades {
+namespace DaveJamesMiller\Breadcrumbs\Facades { 
 
     /**
      * Breadcrumbs facade - allows easy access to the Manager instance.
@@ -15132,18 +15132,18 @@ namespace DaveJamesMiller\Breadcrumbs\Facades {
      */
     class Breadcrumbs
     {
-
+        
         /**
          * Register a breadcrumb-generating callback for a page.
          *
          * @param string $name The name of the page.
          * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
          *     accept additional parameters.
-         * @return void
+         * @return void 
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
          *     used.
          * @static
-         */
+         */ 
         public static function for($name, $callback)
         {
             /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
@@ -15152,7 +15152,7 @@ namespace DaveJamesMiller\Breadcrumbs\Facades {
 
         /**
          * Register a breadcrumb-generating callback for a page.
-         *
+         * 
          * For backwards-compatibility with v5.0.0 and below.
          *
          * @param string $name The name of the page.

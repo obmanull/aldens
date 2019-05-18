@@ -10,6 +10,12 @@ use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:admin-panel');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -52,7 +58,9 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $roles = User::rolesList();
+
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     /**

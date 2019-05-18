@@ -33,6 +33,7 @@ class RegisterTest extends TestCase
 
         self::assertNotEmpty($user->password);
         self::assertNotEquals($password, $user->password);
+        self::assertFalse($user->isAdmin());
     }
 
     public function testVerify(): void
