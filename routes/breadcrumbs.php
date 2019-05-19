@@ -4,12 +4,18 @@ use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
 
+Breadcrumbs::for('home', function ($trail) {
+    $trail->push('Home', route('home'));
+});
+
 Breadcrumbs::for('admin.dashboard', function ($trail) {
-    $trail->push('Панель управления', route('admin.dashboard'));
+    $trail->parent('home');
+    $trail->push('Admin', route('admin.dashboard'));
 });
 
 Breadcrumbs::for('admin.users.index', function ($trail) {
-    $trail->push('Пользователи', route('admin.users.index'));
+    $trail->parent('admin.dashboard');
+    $trail->push('Users', route('admin.users.index'));
 });
 
 Breadcrumbs::for('admin.users.edit', function ($trail, $user) {
