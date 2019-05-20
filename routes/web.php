@@ -26,7 +26,7 @@ Route::group(
 
 Route::group(
     [
-        'middleware' => ['auth', 'verified'],
+        'middleware' => ['auth', 'verified', 'can:admin-panel'],
         'prefix' => 'admin',
         'as' => 'admin.',
         'namespace' => 'Admin',

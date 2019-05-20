@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title">Thead light</h4>
+                    <h4 class="header-title">Users</h4>
                     <div class="single-table">
                         <div class="table-responsive">
                             <table class="table text-center">

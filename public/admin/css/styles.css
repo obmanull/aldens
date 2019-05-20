@@ -497,7 +497,7 @@
     color: #007BFF;
 }
 
-.notification-area li > i {
+.notification-area li i {
     font-size: 26px;
     color: #bdbcbc;
     vertical-align: middle;
