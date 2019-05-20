@@ -1,8 +1,9 @@
 <?php
 
-use App\Entities\User;
-use Illuminate\Support\Str;
+use Carbon\Carbon;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
+use App\Entities\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +16,15 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+$factory->define(\App\Entities\User::class, function (Faker $faker) {
     $active = $faker->boolean;
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => $active ? now() : null,
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => $active ? Str::random(10) : null,
-        'role' => $active ? $faker->randomElements(User::rolesList()) : User::ROLE_USER,
+        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'remember_token' => str_random(10),
+        'role' => $active ? $faker->randomElement([User::ROLE_USER, User::ROLE_ADMIN]) : User::ROLE_USER
     ];
 });
