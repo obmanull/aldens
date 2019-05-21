@@ -4,67 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-  "content-hash": "b6fadc84e43d3d8fed7728c2a229844e",
+  "content-hash": "e65617654162955563b5ed7604ebbfc5",
     "packages": [
         {
-          "name": "davejamesmiller/laravel-breadcrumbs",
-          "version": "5.2.1",
-          "source": {
-            "type": "git",
-            "url": "https://github.com/davejamesmiller/laravel-breadcrumbs.git",
-            "reference": "6465e8710341578092fdd8aea24319d4f53ab27c"
-          },
-          "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/davejamesmiller/laravel-breadcrumbs/zipball/6465e8710341578092fdd8aea24319d4f53ab27c",
-            "reference": "6465e8710341578092fdd8aea24319d4f53ab27c",
-            "shasum": ""
-          },
-          "require": {
-            "illuminate/support": "5.6.*|5.7.*|5.8.*",
-            "illuminate/view": "5.6.*|5.7.*|5.8.*",
-            "php": ">=7.1.3"
-          },
-          "require-dev": {
-            "laravel/framework": "5.6.*|5.7.*|5.8.*",
-            "orchestra/testbench": "3.6.*|3.7.*|3.8.*",
-            "php-coveralls/php-coveralls": "^1.0",
-            "phpunit/phpunit": "7.*"
-          },
-          "type": "library",
-          "extra": {
-            "laravel": {
-              "providers": [
-                "DaveJamesMiller\\Breadcrumbs\\BreadcrumbsServiceProvider"
-              ],
-              "aliases": {
-                "Breadcrumbs": "DaveJamesMiller\\Breadcrumbs\\Facades\\Breadcrumbs"
-              }
-            }
-          },
-          "autoload": {
-            "psr-4": {
-              "DaveJamesMiller\\Breadcrumbs\\": "src/"
-            }
-          },
-          "notification-url": "https://packagist.org/downloads/",
-          "license": [
-            "MIT"
-          ],
-          "authors": [
-            {
-              "name": "Dave James Miller",
-              "email": "dave@davejamesmiller.com"
-            }
-          ],
-          "description": "A simple Laravel-style way to create breadcrumbs.",
-          "homepage": "https://github.com/davejamesmiller/laravel-breadcrumbs",
-          "keywords": [
-            "laravel"
-          ],
-          "time": "2019-02-27T13:09:37+00:00"
-        },
-      {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
             "source": {
@@ -518,6 +460,65 @@
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
+          "name": "kalnoy/nestedset",
+          "version": "v4.3.4",
+          "source": {
+            "type": "git",
+            "url": "https://github.com/lazychaser/laravel-nestedset.git",
+            "reference": "351fab2eaab95f885a0e52b01985301e93c4d7e7"
+          },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/lazychaser/laravel-nestedset/zipball/351fab2eaab95f885a0e52b01985301e93c4d7e7",
+            "reference": "351fab2eaab95f885a0e52b01985301e93c4d7e7",
+            "shasum": ""
+          },
+          "require": {
+            "illuminate/database": "5.2 - 5.8",
+            "illuminate/events": "5.2 - 5.8",
+            "illuminate/support": "5.2 - 5.8",
+            "php": ">=5.5.9"
+          },
+          "require-dev": {
+            "phpunit/phpunit": "4.8.*"
+          },
+          "type": "library",
+          "extra": {
+            "branch-alias": {
+              "dev-master": "v4.2.x-dev"
+            },
+            "laravel": {
+              "providers": [
+                "Kalnoy\\Nestedset\\NestedSetServiceProvider"
+              ]
+            }
+          },
+          "autoload": {
+            "psr-4": {
+              "Kalnoy\\Nestedset\\": "src/"
+            }
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
+          "authors": [
+            {
+              "name": "Alexander Kalnoy",
+              "email": "lazychaser@gmail.com"
+            }
+          ],
+          "description": "Nested Set Model for Laravel 4-5",
+          "keywords": [
+            "database",
+            "hierarchy",
+            "laravel",
+            "nested sets",
+            "nsm"
+          ],
+          "time": "2019-02-27T15:22:30+00:00"
+        },
+      {
             "name": "laravel/framework",
             "version": "v5.8.15",
             "source": {
@@ -3248,6 +3249,64 @@
             "time": "2019-01-28T20:25:53+00:00"
         },
         {
+          "name": "davejamesmiller/laravel-breadcrumbs",
+          "version": "5.2.1",
+          "source": {
+            "type": "git",
+            "url": "https://github.com/davejamesmiller/laravel-breadcrumbs.git",
+            "reference": "6465e8710341578092fdd8aea24319d4f53ab27c"
+          },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/davejamesmiller/laravel-breadcrumbs/zipball/6465e8710341578092fdd8aea24319d4f53ab27c",
+            "reference": "6465e8710341578092fdd8aea24319d4f53ab27c",
+            "shasum": ""
+          },
+          "require": {
+            "illuminate/support": "5.6.*|5.7.*|5.8.*",
+            "illuminate/view": "5.6.*|5.7.*|5.8.*",
+            "php": ">=7.1.3"
+          },
+          "require-dev": {
+            "laravel/framework": "5.6.*|5.7.*|5.8.*",
+            "orchestra/testbench": "3.6.*|3.7.*|3.8.*",
+            "php-coveralls/php-coveralls": "^1.0",
+            "phpunit/phpunit": "7.*"
+          },
+          "type": "library",
+          "extra": {
+            "laravel": {
+              "providers": [
+                "DaveJamesMiller\\Breadcrumbs\\BreadcrumbsServiceProvider"
+              ],
+              "aliases": {
+                "Breadcrumbs": "DaveJamesMiller\\Breadcrumbs\\Facades\\Breadcrumbs"
+              }
+            }
+          },
+          "autoload": {
+            "psr-4": {
+              "DaveJamesMiller\\Breadcrumbs\\": "src/"
+            }
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
+          "authors": [
+            {
+              "name": "Dave James Miller",
+              "email": "dave@davejamesmiller.com"
+            }
+          ],
+          "description": "A simple Laravel-style way to create breadcrumbs.",
+          "homepage": "https://github.com/davejamesmiller/laravel-breadcrumbs",
+          "keywords": [
+            "laravel"
+          ],
+          "time": "2019-02-27T13:09:37+00:00"
+        },
+      {
             "name": "doctrine/cache",
             "version": "v1.8.0",
             "source": {

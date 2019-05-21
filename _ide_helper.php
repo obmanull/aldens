@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.15 on 2019-05-17 10:25:22.
+ * Generated for Laravel 5.8.15 on 2019-05-21 06:33:37.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -15142,7 +15142,7 @@ namespace DaveJamesMiller\Breadcrumbs\Facades {
          * @return void 
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
          *     used.
-         * @static
+         * @static 
          */ 
         public static function for($name, $callback)
         {
