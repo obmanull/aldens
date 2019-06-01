@@ -55,7 +55,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = User::rolesList();
+
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -66,9 +68,8 @@ class UsersController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $user = User::create($request->all());
-
-        return redirect()->route('admin.users.edit', $user);
+        User::register($request->name, $request->email, $request->password, $request->role);
+        return redirect()->route('admin.users.index');
     }
 
     /**

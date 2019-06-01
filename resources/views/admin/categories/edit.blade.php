@@ -14,8 +14,7 @@
             <div class="form-group">
                 <label for="name-input" class="col-form-label">Name</label>
                 <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" type="text" name="name"
-                       value="{{ old('name', $category->name) }}"
-                       id="name-input">
+                       value="{{ old('name', $category->name) }}" id="name-input">
                 @if($errors->has('name'))
                     <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                 @endif
@@ -24,8 +23,7 @@
             <div class="form-group">
                 <label for="slug-input" class="col-form-label">Slug</label>
                 <input class="form-control {{ $errors->has('slug') ? ' is-invalid' : '' }}" type="text" name="slug"
-                       value="{{ old('slug', $category->slug) }}"
-                       id="slug-input">
+                       value="{{ old('slug', $category->slug) }}" id="slug-input">
                 @if($errors->has('slug'))
                     <div class="invalid-feedback">{{ $errors->first('slug') }}</div>
                 @endif

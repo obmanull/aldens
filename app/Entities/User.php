@@ -94,15 +94,16 @@ class User extends Authenticatable  implements MustVerifyEmail
      * @param $name
      * @param $email
      * @param $password
+     * @param int $role
      * @return User
      */
-    public static function register($name, $email, $password): self
+    public static function register($name, $email, $password, $role = User::ROLE_USER): self
     {
         return self::create([
             'name' => $name,
             'email' => $email,
             'password' => Hash::make($password),
-            'role' => User::ROLE_USER,
+            'role' => $role,
         ]);
     }
 
