@@ -45,9 +45,15 @@
             <div class="menu-inner">
                 <nav>
                     <ul class="metismenu" id="menu">
-                        <li><a href="{{ route('admin.dashboard') }}"><i class="ti-dashboard"></i> <span>dashboard</span></a>
+                        <li>
+                            <a href="{{ route('admin.dashboard') }}"><i class="ti-dashboard"></i> <span>dashboard</span></a>
                         </li>
-                        <li><a href="{{ route('admin.users.index') }}"><i class="ti-user"></i> <span>Users</span></a>
+                        <li>
+                            <a href="{{ route('admin.users.index') }}"><i class="ti-user"></i> <span>Users</span></a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.categories.index') }}"><i class="ti-user"></i>
+                                <span>Category</span></a>
                         </li>
                     </ul>
                 </nav>
@@ -100,7 +106,19 @@
         <div class="main-content-inner">
             <!-- sales report area start -->
             <div class="sales-report-area mt-5 mb-5">
-                @yield('content')
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                @yield('content')
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

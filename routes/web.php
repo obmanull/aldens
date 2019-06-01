@@ -34,6 +34,9 @@ Route::group(
     function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
         Route::resource('users', 'UsersController');
+        Route::resource('/categories', 'CategoryController');
+        Route::post('/categories/{category}/up', 'CategoryController@up')->name('categories.up');
+        Route::post('/categories/{category}/down', 'CategoryController@down')->name('categories.down');
     }
 );
 
