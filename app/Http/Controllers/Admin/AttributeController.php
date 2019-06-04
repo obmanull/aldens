@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Entities\Attribute;
 use App\Entities\Category;
+use App\Http\Requests\Admin\Category\AttributeRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
@@ -27,16 +28,8 @@ class AttributeController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Category $category)
+    public function store(AttributeRequest $request, Category $category)
     {
-        $this->validate($request, [
-            'name' => 'required|string',
-            'type' => ['required', 'string', 'max:255', Rule::in(array_keys(Attribute::typesList()))],
-            'required' => 'nullable|string',
-            'variants' => 'nullable|string',
-            'sort' => 'required|integer',
-        ]);
-
         $category->attributes()->create([
             'name' => $request['name'],
             'type' => $request['type'],
@@ -46,17 +39,6 @@ class AttributeController extends Controller
         ]);
 
         return redirect()->route('admin.categories.show', [$category]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category, Attribute $attribute)
-    {
-        return view('admin.categories.attributes.show', compact('category', 'attribute'));
     }
 
     /**
@@ -78,18 +60,8 @@ class AttributeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category, Attribute $attribute)
+    public function update(AttributeRequest $request, Category $category, Attribute $attribute)
     {
-
-        $this->validate($request, [
-            'name' => 'required|string',
-            'type' => ['required', 'string', 'max:255', Rule::in(array_keys(Attribute::typesList()))],
-            'required' => 'nullable|string',
-            'variants' => 'nullable|string',
-            'sort' => 'required|integer',
-        ]);
-
-
         Attribute::findOrFail($attribute->id)->update([
             'name' => $request['name'],
             'type' => $request['type'],
@@ -107,8 +79,9 @@ class AttributeController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category, Attribute $attribute)
     {
-        //
+        $attribute->delete();
+        return redirect()->route('admin.categories.show', compact('category'));
     }
 }

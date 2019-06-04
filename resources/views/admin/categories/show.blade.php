@@ -1,9 +1,8 @@
 @extends('layouts.admin')
 @section('content')
 
-
-    <h4 class="header-title">{{ $category->name }}</h4>
-    <div class="single-table p-2 mb-2">
+    <h4 class="card-title">{{ $category->name }}</h4>
+    <div class="single-table mb-2">
 
         <div class="row">
             <div class="col-4 mb-2">
@@ -68,12 +67,13 @@
                         <th>Name</th>
                         <th>Slug</th>
                         <th>Required</th>
+                        <th>Delete</th>
                     </tr>
                     </thead>
                     <tbody>
 
                     <tr>
-                        <th colspan="5">Parent attributes</th>
+                        <th colspan="6">Parent attributes</th>
                     </tr>
 
                     @forelse ($parentAttributes as $attribute)
@@ -87,15 +87,20 @@
                             </td>
                             <td>{{ $attribute->type }}</td>
                             <td>{{ $attribute->required ? 'Yes' : 'No' }}</td>
+                            <td>
+                                <a href="{{ route('admin.categories.attributes.destroy', [$category, $attribute]) }}">
+                                    <i class="ti-close"></i>
+                                </a>
+                            </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">None</td>
+                            <td colspan="6">None</td>
                         </tr>
                     @endforelse
 
                     <tr>
-                        <th colspan="5">Own attributes</th>
+                        <th colspan="6">Own attributes</th>
                     </tr>
 
                     @forelse ($attributes as $attribute)
@@ -109,10 +114,19 @@
                             </td>
                             <td>{{ $attribute->type }}</td>
                             <td>{{ $attribute->required ? 'Yes' : 'No' }}</td>
+                            <td>
+                                <label for="btn-delete-attribute"><i class="ti-close"></i></label>
+                                <form action="{{ route('admin.categories.attributes.destroy', [$category, $attribute]) }}"
+                                      method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" id="btn-delete-attribute" class="d-none">
+                                </form>
+                            </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">None</td>
+                            <td colspan="6">None</td>
                         </tr>
                     @endforelse
 

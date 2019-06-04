@@ -46,7 +46,7 @@ Route::group(
                 Route::post('/{category}/down', 'CategoryController@down')->name('down');
 
                 Route::group(['prefix' => '/{category}'], function () {
-                    Route::resource('attributes', 'AttributeController')->except('index');
+                    Route::resource('attributes', 'AttributeController')->except('index', 'show');
                 });
             }
         );
