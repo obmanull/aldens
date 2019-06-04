@@ -32,11 +32,24 @@ Route::group(
         'namespace' => 'Admin',
     ],
     function () {
-        Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+        Route::get('dashboard', 'DashboardController@index')->name('dashboard');
         Route::resource('users', 'UsersController');
-        Route::resource('/categories', 'CategoryController');
-        Route::post('/categories/{category}/up', 'CategoryController@up')->name('categories.up');
-        Route::post('/categories/{category}/down', 'CategoryController@down')->name('categories.down');
+
+        Route::resource('categories', 'CategoryController');
+        Route::group(
+            [
+                'prefix' => 'categories',
+                'as' => 'categories.',
+            ],
+            function () {
+                Route::post('/{category}/up', 'CategoryController@up')->name('up');
+                Route::post('/{category}/down', 'CategoryController@down')->name('down');
+
+                Route::group(['prefix' => '/{category}'], function () {
+                    Route::resource('attributes', 'AttributeController')->except('index');
+                });
+            }
+        );
     }
 );
 

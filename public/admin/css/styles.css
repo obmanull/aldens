@@ -8,10 +8,10 @@
     Version: 1.0
 
 ----------------------------------------------
-    
+
     CSS INDEX
     ===================
-  
+
     1. Core Css
     2. Dashboard One
         2.1 Sidebar Menu
@@ -840,7 +840,6 @@ ul.breadcrumbs {
     font-weight: 600;
     letter-spacing: 0;
     color: #333;
-    text-transform: capitalize;
     margin-bottom: 17px;
 }
 
@@ -1890,8 +1889,6 @@ p.card-text {
 .form-control {
     font-size: 14px;
     border: 1px solid rgba(170, 170, 170, .3);
-    padding: 10.72px 12.8px;
-    padding: .67rem .8rem;
 }
 
 .form-control-sm,
@@ -1918,8 +1915,7 @@ label {
     font-weight: 500;
     color: #666;
     display: inline-block;
-    margin-bottom: 8px;
-    margin-bottom: .5rem;
+    margin-bottom: 0;
 }
 
 .font-14 {

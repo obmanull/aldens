@@ -1360,7 +1360,7 @@
                         var href = url;
 
                         if (msie) {
-                            // IE needs attribute set twice to normalize properties
+                            // IE needs attributes set twice to normalize properties
                             urlParsingNode.setAttribute('href', href);
                             href = urlParsingNode.href;
                         }
@@ -4589,7 +4589,7 @@
 
                 var regExp = allowedAttributeList.filter(function (attrRegex) {
                     return attrRegex instanceof RegExp;
-                }); // Check if a regular expression validates the attribute.
+                }); // Check if a regular expression validates the attributes.
 
                 for (var i = 0, l = regExp.length; i < l; i++) {
                     if (attrName.match(regExp[i])) {
@@ -6498,7 +6498,7 @@
                         // Support: Firefox 64+, Edge 18+
                         // Some browsers don't support the "nonce" property on scripts.
                         // On the other hand, just using `getAttribute` is not enough as
-                        // the `nonce` attribute is reset to an empty string whenever it
+                        // the `nonce` attributes is reset to an empty string whenever it
                         // becomes browsing-context connected.
                         // See https://github.com/whatwg/html/issues/2369
                         // See https://html.spec.whatwg.org/#nonce-attributes
@@ -7575,7 +7575,7 @@
 
                                     if (elem) {
 
-                                        // Verify the id attribute
+                                        // Verify the id attributes
                                         node = elem.getAttributeNode("id");
                                         if (node && node.value === id) {
                                             return [elem];
@@ -7657,7 +7657,7 @@
                             assert(function (el) {
                                 // Select is set to empty string on purpose
                                 // This is to test IE's treatment of not explicitly
-                                // setting a boolean content attribute,
+                                // setting a boolean content attributes,
                                 // since its presence should be enough
                                 // https://bugs.jquery.com/ticket/12359
                                 docElem.appendChild(el).innerHTML = "<a id='" + expando + "'></a>" +
@@ -7666,7 +7666,7 @@
 
                                 // Support: IE8, Opera 11-12.16
                                 // Nothing should be selected when empty strings follow ^= or $= or *=
-                                // The test attribute must be unknown in Opera but "safe" for WinRT
+                                // The test attributes must be unknown in Opera but "safe" for WinRT
                                 // https://msdn.microsoft.com/en-us/library/ie/hh465388.aspx#attribute_section
                                 if (el.querySelectorAll("[msallowcapture^='']").length) {
                                     rbuggyQSA.push("[*^$]=" + whitespace + "*(?:''|\"\")");
@@ -7709,7 +7709,7 @@
                                 el.appendChild(input).setAttribute("name", "D");
 
                                 // Support: IE8
-                                // Enforce case-sensitivity of name attribute
+                                // Enforce case-sensitivity of name attributes
                                 if (el.querySelectorAll("[name=d]").length) {
                                     rbuggyQSA.push("name" + whitespace + "*[*^$|!~]?=");
                                 }
@@ -8478,7 +8478,7 @@
                                     elem.type === "text" &&
 
                                     // Support: IE<8
-                                    // New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
+                                    // New HTML5 attributes values (e.g., "search") appear with elem.type === "text"
                                     ((attr = elem.getAttribute("type")) == null || attr.toLowerCase() === "text");
                             },
 
@@ -9126,7 +9126,7 @@
                     });
 
 // Support: IE<8
-// Prevent attribute/property "interpolation"
+// Prevent attributes/property "interpolation"
 // https://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
                     if (!assert(function (el) {
                         el.innerHTML = "<a href='#'></a>";
@@ -10610,7 +10610,7 @@
                 var name;
 
                 // If nothing was found internally, try to fetch any
-                // data from the HTML5 data-* attribute
+                // data from the HTML5 data-* attributes
                 if (data === undefined && elem.nodeType === 1) {
                     name = "data-" + key.replace(rmultiDash, "-$&").toLowerCase();
                     data = elem.getAttribute(name);
@@ -12183,7 +12183,7 @@
                 return elem;
             }
 
-// Replace/restore the type attribute of script elements for safe DOM manipulation
+// Replace/restore the type attributes of script elements for safe DOM manipulation
             function disableScript(elem) {
                 elem.type = (elem.getAttribute("type") !== null) + "/" + elem.type;
                 return elem;
@@ -14138,7 +14138,7 @@
                     var ret, hooks,
                         nType = elem.nodeType;
 
-                    // Don't get/set attributes on text, comment and attribute nodes
+                    // Don't get/set attributes on text, comment and attributes nodes
                     if (nType === 3 || nType === 8 || nType === 2) {
                         return;
                     }
@@ -14268,7 +14268,7 @@
                     var ret, hooks,
                         nType = elem.nodeType;
 
-                    // Don't get/set properties on text, comment and attribute nodes
+                    // Don't get/set properties on text, comment and attributes nodes
                     if (nType === 3 || nType === 8 || nType === 2) {
                         return;
                     }
@@ -14304,7 +14304,7 @@
                             // elem.tabIndex doesn't always return the
                             // correct value when it hasn't been explicitly set
                             // https://web.archive.org/web/20141116233347/http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
-                            // Use proper attribute retrieval(#12072)
+                            // Use proper attributes retrieval(#12072)
                             var tabindex = jQuery.find.attr(elem, "tabindex");
 
                             if (tabindex) {
@@ -31241,12 +31241,12 @@
                      *
                      * Though the ">" character is escaped for symmetry, characters like
                      * ">" and "/" don't need escaping in HTML and have no special meaning
-                     * unless they're part of a tag or unquoted attribute value. See
+                     * unless they're part of a tag or unquoted attributes value. See
                      * [Mathias Bynens's article](https://mathiasbynens.be/notes/ambiguous-ampersands)
                      * (under "semi-related fun fact") for more details.
                      *
                      * When working with HTML you should always
-                     * [quote attribute values](http://wonko.com/post/html-escaping) to reduce
+                     * [quote attributes values](http://wonko.com/post/html-escaping) to reduce
                      * XSS vectors.
                      *
                      * @static
@@ -35282,7 +35282,7 @@
              * @memberof Modifiers
              * @argument {Object} data - The data object generated by `update` method
              * @argument {Object} data.styles - List of style properties - values to apply to popper element
-             * @argument {Object} data.attributes - List of attribute properties - values to apply to popper element
+             * @argument {Object} data.attributes - List of attributes properties - values to apply to popper element
              * @argument {Object} options - Modifiers configuration and options
              * @returns {Object} The same data object
              */
@@ -35306,7 +35306,7 @@
             }
 
             /**
-             * Set the x-placement attribute before everything else because it could be used
+             * Set the x-placement attributes before everything else because it could be used
              * to add margins to the popper margins needs to be calculated to get the
              * correct popper offsets.
              * @method
@@ -36383,7 +36383,7 @@
 
                 /**
                  * Modifier used to hide the popper when its reference element is outside of the
-                 * popper boundaries. It will set a `x-out-of-boundaries` attribute which can
+                 * popper boundaries. It will set a `x-out-of-boundaries` attributes which can
                  * be used to hide with a CSS selector the popper when its reference is
                  * out of boundaries.
                  *
@@ -37550,7 +37550,7 @@
             var isBuiltInTag = makeMap('slot,component', true);
 
             /**
-             * Check if an attribute is a reserved attribute.
+             * Check if an attributes is a reserved attributes.
              */
             var isReservedAttribute = makeMap('key,ref,slot,slot-scope,is');
 
@@ -37862,7 +37862,7 @@
                 isReservedTag: no,
 
                 /**
-                 * Check if an attribute is reserved so that it cannot be used as a component
+                 * Check if an attributes is reserved so that it cannot be used as a component
                  * prop. This is platform-dependent and may be overwritten.
                  */
                 isReservedAttr: no,
@@ -37884,7 +37884,7 @@
                 parsePlatformTagName: identity,
 
                 /**
-                 * Check if an attribute must be bound using property, e.g. value
+                 * Check if an attributes must be bound using property, e.g. value
                  * Platform-dependent.
                  */
                 mustUseProp: no,
@@ -40009,7 +40009,7 @@
                 for (var i = 0, l = children.length; i < l; i++) {
                     var child = children[i];
                     var data = child.data;
-                    // remove slot attribute if the node is resolved as a Vue slot node
+                    // remove slot attributes if the node is resolved as a Vue slot node
                     if (data && data.attrs && data.attrs.slot) {
                         delete data.attrs.slot;
                     }
@@ -42195,7 +42195,7 @@
                         if (isReservedAttribute(hyphenatedKey) ||
                             config.isReservedAttr(hyphenatedKey)) {
                             warn(
-                                ("\"" + hyphenatedKey + "\" is a reserved attribute and cannot be used as component prop."),
+                                ("\"" + hyphenatedKey + "\" is a reserved attributes and cannot be used as component prop."),
                                 vm
                             );
                         }
@@ -43226,7 +43226,7 @@
                 if (tagName !== 'select') {
                     return elm
                 }
-                // false or null will remove the attribute but undefined will not
+                // false or null will remove the attributes but undefined will not
                 if (vnode.data && vnode.data.attrs && vnode.data.attrs.multiple !== undefined) {
                     elm.setAttribute('multiple', 'multiple');
                 }
@@ -43626,9 +43626,9 @@
                     }
                 }
 
-                // set scope id attribute for scoped CSS.
+                // set scope id attributes for scoped CSS.
                 // this is implemented as a special case to avoid the overhead
-                // of going through the normal attribute patching process.
+                // of going through the normal attributes patching process.
                 function setScope(vnode) {
                     var i;
                     if (isDef(i = vnode.fnScopeId)) {
@@ -44307,12 +44307,12 @@
                 if (el.tagName.indexOf('-') > -1) {
                     baseSetAttr(el, key, value);
                 } else if (isBooleanAttr(key)) {
-                    // set attribute for blank value
+                    // set attributes for blank value
                     // e.g. <option disabled>Select one</option>
                     if (isFalsyAttrValue(value)) {
                         el.removeAttribute(key);
                     } else {
-                        // technically allowfullscreen is a boolean attribute for <iframe>,
+                        // technically allowfullscreen is a boolean attributes for <iframe>,
                         // but Flash expects a value of "true" when used on <embed> tag
                         value = key === 'allowfullscreen' && el.tagName === 'EMBED'
                             ? 'true'
@@ -47420,7 +47420,7 @@
                             attrs.forEach(function (attr) {
                                 if (invalidAttributeRE.test(attr.name)) {
                                     warn$2(
-                                        "Invalid dynamic argument expression: attribute names cannot contain " +
+                                        "Invalid dynamic argument expression: attributes names cannot contain " +
                                         "spaces, quotes, <, >, / or =.",
                                         {
                                             start: attr.start + attr.name.indexOf("["),
@@ -47781,8 +47781,8 @@
                     /* istanbul ignore if */
                     if (slotScope) {
                         warn$2(
-                            "the \"scope\" attribute for scoped slots have been deprecated and " +
-                            "replaced by \"slot-scope\" since 2.5. The new \"slot-scope\" attribute " +
+                            "the \"scope\" attributes for scoped slots have been deprecated and " +
+                            "replaced by \"slot-scope\" since 2.5. The new \"slot-scope\" attributes " +
                             "can also be used on plain elements in addition to <template> to " +
                             "denote scoped slots.",
                             el.rawAttrsMap['scope'],
@@ -47809,7 +47809,7 @@
                 if (slotTarget) {
                     el.slotTarget = slotTarget === '""' ? '"default"' : slotTarget;
                     el.slotTargetDynamic = !!(el.attrsMap[':slot'] || el.attrsMap['v-bind:slot']);
-                    // preserve slot as an attribute for native shadow DOM compat
+                    // preserve slot as an attributes for native shadow DOM compat
                     // only for non-scoped slots.
                     if (el.tag !== 'template' && !el.slotScope) {
                         addAttr(el, 'slot', slotTarget, getRawBindingAttr(el, 'slot'));
@@ -48047,7 +48047,7 @@
                             }
                         }
                     } else {
-                        // literal attribute
+                        // literal attributes
                         {
                             var res = parseText(value, delimiters);
                             if (res) {
@@ -48061,7 +48061,7 @@
                             }
                         }
                         addAttr(el, name, JSON.stringify(value), list[i]);
-                        // #6887 firefox doesn't update muted state if set via attribute
+                        // #6887 firefox doesn't update muted state if set via attributes
                         // even immediately after element creation
                         if (!el.component &&
                             name === 'muted' &&
@@ -48100,7 +48100,7 @@
                     if (
                         map[attrs[i].name] && !isIE && !isEdge
                     ) {
-                        warn$2('duplicate attribute: ' + attrs[i].name, attrs[i]);
+                        warn$2('duplicate attributes: ' + attrs[i].name, attrs[i]);
                     }
                     map[attrs[i].name] = attrs[i].value;
                 }
@@ -48804,7 +48804,7 @@
                 if (el.pre) {
                     data += "pre:true,";
                 }
-                // record original tag name for components using "is" attribute
+                // record original tag name for components using "is" attributes
                 if (el.component) {
                     data += "tag:\"" + (el.tag) + "\",";
                 }
@@ -49548,7 +49548,7 @@
 
             /*  */
 
-// check whether current browser encodes a char inside attribute values
+// check whether current browser encodes a char inside attributes values
             var div;
 
             function getShouldDecode(href) {
@@ -49557,7 +49557,7 @@
                 return div.innerHTML.indexOf('&#10;') > 0
             }
 
-// #3663: IE encodes newlines inside attribute values while other browsers don't
+// #3663: IE encodes newlines inside attributes values while other browsers don't
             var shouldDecodeNewlines = inBrowser ? getShouldDecode(false) : false;
 // #6828: chrome encodes content in a[href]
             var shouldDecodeNewlinesForHref = inBrowser ? getShouldDecode(true) : false;

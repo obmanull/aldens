@@ -47,6 +47,16 @@ Breadcrumbs::for('admin.categories.show', function ($trail, $category) {
     $trail->push($category->name, route('admin.categories.show', $category));
 });
 
+Breadcrumbs::for('admin.categories.attributes.create', function ($trail, $category) {
+    $trail->parent('admin.categories.show', $category);
+    $trail->push('Add attribute', route('admin.categories.attributes.create', $category));
+});
+
+Breadcrumbs::for('admin.categories.attributes.edit', function ($trail, $category, $attribute) {
+    $trail->parent('admin.categories.show', $category);
+    $trail->push('Edit attribute', route('admin.categories.attributes.edit', [$category, $attribute]));
+});
+
 Breadcrumbs::for('admin.categories.edit', function ($trail, $category) {
     $trail->parent('admin.categories.index');
     $trail->push($category->name, route('admin.categories.edit', $category));

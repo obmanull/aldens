@@ -2,76 +2,123 @@
 @section('content')
 
 
-    <h4 class="header-title">Category</h4>
+    <h4 class="header-title">{{ $category->name }}</h4>
     <div class="single-table p-2 mb-2">
 
-        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary mb-3">Create</a>
+        <div class="row">
+            <div class="col-4 mb-2">
+                <a href="{{ route('admin.categories.edit', [$category]) }}" class="btn btn-success">Edit</a>
+                <label for="btn-delete" class="btn btn-danger">Delete</label>
 
-        <div class="table-responsive">
-            <table class="table">
-                <thead class="text-uppercase bg-light">
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">action</th>
-                </tr>
-                </thead>
-                <tbody>
+                <form action="{{ route('admin.categories.destroy', [$category])  }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" id="btn-delete" class="d-none">
+                </form>
 
-                @foreach($categories as $category)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+
+                        <tr>
+                            <th>id</th>
+                            <td>{{ $category->id }}</td>
+                        </tr>
+                        <tr>
+                            <th>name</th>
+                            <td>{{ $category->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>slug</th>
+                            <td>{{ $category->slug }}</td>
+                        </tr>
+                        <tr>
+                            <th>parent</th>
+                            <td>@empty(! $category->parent)
+                                    {{ $category->parent->name }}
+                                @else
+                                    None parent
+                                @endempty
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ route('admin.categories.attributes.create', $category) }}" class="btn btn-primary mb-3">Add
+        attribute</a>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
                     <tr>
-                        <th scope="row">{{ $category->id }}</th>
-                        <td>
-                            <a href="{{ route('admin.categories.show', $category) }}">
-                                @for($i = 0; $i < $category->depth; $i++)
-                                    -
-                                @endfor
-                                {{ $category->name }}
-                            </a>
-                        <td>
-
-                            <ul class="d-flex justify-content-left">
-                                <li class="mr-3">
-                                    <form action="{{ route('admin.categories.up', $category) }}"
-                                          method="post">
-                                        @csrf
-                                        <label class="ti-arrow-up">
-                                            <input type="submit" class="d-none">
-                                        </label>
-                                    </form>
-                                </li>
-                                <li class="mr-3">
-                                    <form action="{{ route('admin.categories.down', $category) }}"
-                                          method="post">
-                                        @csrf
-                                        <label class="ti-arrow-down">
-                                            <input type="submit" class="d-none">
-                                        </label>
-                                    </form>
-                                </li>
-                                <li class="mr-3">
-                                    <a href="{{ route('admin.categories.edit', $category) }}"
-                                       class="text-secondary">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <form action="{{ route('admin.categories.destroy', $category) }}"
-                                          method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <label class="text-danger ti-trash">
-                                            <input type="submit" class="d-none">
-                                        </label>
-                                    </form>
-                                </li>
-                            </ul>
-                        </td>
+                        <th>id</th>
+                        <th>Sort</th>
+                        <th>Name</th>
+                        <th>Slug</th>
+                        <th>Required</th>
                     </tr>
-                @endforeach
+                    </thead>
+                    <tbody>
 
-                </tbody>
-            </table>
+                    <tr>
+                        <th colspan="5">Parent attributes</th>
+                    </tr>
+
+                    @forelse ($parentAttributes as $attribute)
+                        <tr>
+                            <td>{{ $attribute->id }}</td>
+                            <td>{{ $attribute->sort }}</td>
+                            <td>
+                                <a href="{{ route('admin.categories.attributes.edit', [$category, $attribute]) }}">
+                                    {{ $attribute->name }}
+                                </a>
+                            </td>
+                            <td>{{ $attribute->type }}</td>
+                            <td>{{ $attribute->required ? 'Yes' : 'No' }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5">None</td>
+                        </tr>
+                    @endforelse
+
+                    <tr>
+                        <th colspan="5">Own attributes</th>
+                    </tr>
+
+                    @forelse ($attributes as $attribute)
+                        <tr>
+                            <td>{{ $attribute->id }}</td>
+                            <td>{{ $attribute->sort }}</td>
+                            <td>
+                                <a href="{{ route('admin.categories.attributes.edit', [$category, $attribute]) }}">
+                                    {{ $attribute->name }}
+                                </a>
+                            </td>
+                            <td>{{ $attribute->type }}</td>
+                            <td>{{ $attribute->required ? 'Yes' : 'No' }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5">None</td>
+                        </tr>
+                    @endforelse
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

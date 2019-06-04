@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::defaultOrder()->withDepth()->get();
-        return view('admin.categories.show', compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -65,8 +65,10 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $categories = Category::defaultOrder()->withDepth()->get();
-        return view('admin.categories.show', compact('categories'));
+        $parentAttributes = $category->parentAttributes();
+        $attributes = $category->attributes()->orderBy('sort')->get();
+
+        return view('admin.categories.show', compact('category', 'attributes', 'parentAttributes'));
     }
 
     /**
@@ -107,6 +109,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->back();
+        return redirect()->route('admin.categories.index');
     }
 }

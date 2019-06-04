@@ -9452,7 +9452,7 @@ namespace Illuminate\Support\Facades {
          * Here is the process to determine the format:
          * 
          *  * format defined by the user (with setRequestFormat())
-         *  * _format request attribute
+         *  * _format request attributes
          *  * $default
          *
          * @param string|null $default The default format
