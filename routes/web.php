@@ -17,10 +17,13 @@ Auth::routes(['verify' => true]);
 
 Route::group(
     [
-        'middleware' => ['auth', 'verified']
+        'middleware' => ['auth', 'verified'],
+        'prefix' => 'cabinet',
+        'as' => 'cabinet.',
+        'namespace' => 'Cabinet',
     ],
     function () {
-        Route::get('/home', 'HomeController@index')->name('home');
+        Route::get('/dashboard', 'DashboardController@index')->name('home');
     }
 );
 
