@@ -3,11 +3,13 @@
 namespace Tests\Feature;
 
 use App\Entities\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LoginTest extends TestCase
 {
+    use DatabaseTransactions;
     /**
      * A basic test example.
      *
@@ -34,18 +36,17 @@ class LoginTest extends TestCase
             ->assertSessionHasErrors(['email', 'password']);
     }
 
-    public function testRegister()
+    public function testLogin()
     {
-        $user = factory(User::class)->make();
+        $user = factory(User::class)->create();
 
-        $response = $this->post('/register', [
-            'name' => $user->name,
+        $response = $this->post('/login', [
             'email' => $user->email,
-            'password' => $user->password,
-            'password_confirmation' => $user->password,
+            'password' => '12345678',
         ]);
 
-        $response->dumpHeaders();
-        $response->dump();
+        $this->assertAuthenticatedAs($user);
+        $response
+            ->assertRedirect('/home');
     }
 }
