@@ -22,6 +22,7 @@ $factory->define(\App\Entities\User::class, function (Faker $faker) {
     $active = false;
     return [
         'name' => $faker->name,
+        'last_name' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$12$eSyuSRBTxi42WJqem4XIXOejvSMsbm8rUPLKzxQGkKj1CNf0PIXJa', // 12345678
         'remember_token' => str_random(10),
