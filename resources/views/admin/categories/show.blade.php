@@ -1,5 +1,6 @@
-@extends('layouts.admin')
-@section('content')
+@extends('admin.categories.layout')
+
+@section('main')
 
     <h4 class="card-title">{{ $category->name }}</h4>
     <div class="single-table mb-2">
@@ -7,7 +8,7 @@
         <div class="row">
             <div class="col-4 mb-2">
                 <a href="{{ route('admin.categories.edit', [$category]) }}" class="btn btn-success">Edit</a>
-                <label for="btn-delete" class="btn btn-danger">Delete</label>
+                <label for="btn-delete" class="btn btn-danger cursor-pointer">Delete</label>
 
                 <form action="{{ route('admin.categories.destroy', [$category])  }}" method="post">
                     @csrf
@@ -89,7 +90,7 @@
                             <td>{{ $attribute->required ? 'Yes' : 'No' }}</td>
                             <td>
                                 <a href="{{ route('admin.categories.attributes.destroy', [$category, $attribute]) }}">
-                                    <i class="ti-close"></i>
+                                    <i class="fas fa-trash"></i>
                                 </a>
                             </td>
                         </tr>
@@ -115,7 +116,7 @@
                             <td>{{ $attribute->type }}</td>
                             <td>{{ $attribute->required ? 'Yes' : 'No' }}</td>
                             <td>
-                                <label for="btn-delete-attribute"><i class="ti-close"></i></label>
+                                <label for="btn-delete-attribute" class="text-danger cursor-pointer fas fa-trash">
                                 <form action="{{ route('admin.categories.attributes.destroy', [$category, $attribute]) }}"
                                       method="post">
                                     @csrf

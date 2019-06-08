@@ -1,7 +1,6 @@
-@extends('layouts.admin')
-@section('content')
+@extends('admin.users.layout')
 
-    <h4 class="header-title">Users</h4>
+@section('main')
 
     <a href="{{ route('admin.users.create') }}" class="btn btn-primary mb-3">Create</a>
 
@@ -73,16 +72,16 @@
                         <td>{{ $user->role_name }}</td>
                         <td>
                             @if(! empty($user->email_verified_at))
-                                <i class="ti-check"></i>
+                                <i class="fas fa-check"></i>
                             @else
-                                <i class="ti-close"></i>
+                                <i class="fas fa-times"></i>
                             @endif
                         </td>
                         <td>
-                            <ul class="d-flex justify-content-center">
+                            <ul class="d-flex justify-content-center list-unstyled">
                                 <li class="mr-3">
                                     <a href="{{ route('admin.users.edit', $user) }}"
-                                       class="text-secondary">
+                                       class="text-success">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </li>
@@ -91,7 +90,7 @@
                                           method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <label class="text-danger ti-trash">
+                                        <label class="text-danger cursor-pointer fas fa-trash">
                                             <input type="submit" class="d-none">
                                         </label>
                                     </form>

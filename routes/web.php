@@ -23,7 +23,8 @@ Route::group(
         'namespace' => 'Cabinet',
     ],
     function () {
-        Route::get('/dashboard', 'DashboardController@index')->name('home');
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+        Route::get('/profile', 'ProfileController@index')->name('profile.index');
     }
 );
 
@@ -35,7 +36,7 @@ Route::group(
         'namespace' => 'Admin',
     ],
     function () {
-        Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+        Route::get('dashboard', 'DashboardController@index')->name('dashboard.index');
         Route::resource('users', 'UsersController');
 
         Route::resource('categories', 'CategoryController');
