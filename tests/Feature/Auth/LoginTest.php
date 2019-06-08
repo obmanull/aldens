@@ -47,6 +47,6 @@ class LoginTest extends TestCase
 
         $this->assertAuthenticatedAs($user);
         $response
-            ->assertRedirect('/home');
+            ->assertRedirect('/cabinet/dashboard');
     }
 }
