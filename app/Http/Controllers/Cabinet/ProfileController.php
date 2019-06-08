@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Cabinet;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DashboardController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,6 +24,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('cabinet.dashboard');
+        return view('cabinet.profile');
     }
 }

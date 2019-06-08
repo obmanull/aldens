@@ -1,5 +1,6 @@
-@extends('layouts.admin')
-@section('content')
+@extends('admin.categories.layout')
+
+@section('main')
 
     <div class="single-table p-2 mb-2">
 

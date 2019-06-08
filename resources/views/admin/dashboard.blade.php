@@ -1,11 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.app')
+
 @section('content')
+    @include ('admin.partials._nav', ['page' => 'dashboard'])
 
-    <!-- sales report area start -->
-    <div class="sales-report-area mt-5 mb-5">
-
-    </div>
-    <!-- row area start-->
+    <h4 class="header-title">Dashboard</h4>
 
 @endsection
-

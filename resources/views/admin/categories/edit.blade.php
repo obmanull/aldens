@@ -1,5 +1,6 @@
-@extends('layouts.admin')
-@section('content')
+@extends('admin.categories.layout')
+
+@section('main')
 
 
     <h4 class="header-title">Category</h4>

@@ -1,6 +1,6 @@
-@extends('layouts.admin')
+@extends('admin.users.layout')
 
-@section('content')
+@section('main')
 
     <h4 class="mb-3"><strong>Create user</strong></h4>
 
