@@ -25,6 +25,7 @@ Route::group(
     function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
         Route::get('/profile', 'ProfileController@index')->name('profile.index');
+        Route::post('/profile/update/{user}', 'ProfileController@update')->name('profile.update');
     }
 );
 

@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs mb-4">
     <li class="nav-item">
         <a class="nav-link {{ $page === 'dashboard' ? 'active' : ''}}" href="{{ route('cabinet.dashboard.index') }}">Dashboard</a>
     </li>
