@@ -31,6 +31,17 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" name="phone" class="form-control {{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                   id="phone"
+                   value="{{ old('phone', $user->phone) }}">
+            @error('phone')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 

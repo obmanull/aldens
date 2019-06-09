@@ -35,9 +35,16 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
+            'phone' => 'required|string|max:255|regex:/^\d+$/s'
         ]);
 
+        $oldPhone = $user->phone;
+
         $user->update($request->all());
+
+        if($oldPhone != $user->phone) {
+            $user->unverifyPhone();
+        }
 
         return back()->with('status', 'Profile update successful');
     }
