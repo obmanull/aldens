@@ -5,12 +5,6 @@
 
     <h4 class="header-title">Profile</h4>
 
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-
     <form action="{{ route('cabinet.profile.update', $user) }}" method="post">
         @csrf
         <div class="form-group">

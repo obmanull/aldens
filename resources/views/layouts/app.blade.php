@@ -32,6 +32,7 @@
 
     @yield('breadcrumbs')
 
+    @include('layouts.partials.flash')
     @yield('content')
 </div>
 </body>
