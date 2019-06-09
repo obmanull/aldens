@@ -41,6 +41,7 @@ use App\Exceptions\RoleAlreadyException;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User whereUpdatedAt($value)
+ * @method saveOrFail(array $options = [])
  * @mixin \Eloquent
  * @property int $role
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User whereRole($value)
@@ -66,7 +67,7 @@ class User extends Authenticatable  implements MustVerifyEmail
     const ROLE_USER = 1;
     const ROLE_ADMIN = 2;
 
-    const PHONE_VERIFY_TOKEN_EXPIRED = 300;
+    const PHONE_TOKEN_EXPIRED = 300;
 
     /**
      * The attributes that are mass assignable.
@@ -176,7 +177,7 @@ class User extends Authenticatable  implements MustVerifyEmail
 
         $this->phone_verified = false;
         $this->phone_verify_token = (string) random_int(10000, 99999);
-        $this->phone_verify_token_expire = $now->copy()->addSeconds(self::PHONE_VERIFY_TOKEN_EXPIRED);
+        $this->phone_verify_token_expire = $now->copy()->addSeconds(self::PHONE_TOKEN_EXPIRED);
         $this->saveOrFail();
 
         return $this->phone_verify_token;
@@ -185,7 +186,7 @@ class User extends Authenticatable  implements MustVerifyEmail
     public function verifyPhone(Carbon $now, $token): void
     {
         if ($token !== $this->phone_verify_token) {
-            throw new IncorrectTokenException('Token is incorrect');
+            throw new IncorrectTokenException('Token is incorrect.');
         }
 
         if (!empty($this->phone_verify_token) && $this->phone_verify_token_expire && $this->phone_verify_token_expire->lt($now)) {
@@ -193,6 +194,14 @@ class User extends Authenticatable  implements MustVerifyEmail
         }
 
         $this->phone_verified = true;
+        $this->phone_verify_token = null;
+        $this->phone_verify_token_expire = null;
+        $this->saveOrFail();
+    }
+
+    public function unverifyPhone()
+    {
+        $this->phone_verified = false;
         $this->phone_verify_token = null;
         $this->phone_verify_token_expire = null;
         $this->saveOrFail();
