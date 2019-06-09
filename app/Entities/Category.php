@@ -27,6 +27,7 @@ use Kalnoy\Nestedset\NodeTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Category whereRgt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Category whereSlug($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entities\Attribute[] $attributes
  */
 class Category extends Model
 {

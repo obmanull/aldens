@@ -19,13 +19,17 @@ use App\Entities\User;
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 $factory->define(\App\Entities\User::class, function (Faker $faker) {
-    $active = false;
+    $phoneActive = $faker->boolean;
     return [
         'name' => $faker->name,
         'last_name' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$12$eSyuSRBTxi42WJqem4XIXOejvSMsbm8rUPLKzxQGkKj1CNf0PIXJa', // 12345678
         'remember_token' => str_random(10),
-        'role' => User::ROLE_USER
+        'role' => User::ROLE_USER,
+        'phone' =>  $phoneActive ? $faker->phoneNumber : null,
+        'phone_verified' =>  $phoneActive,
+        'phone_verify_token' =>  $phoneActive ? Str::uuid() : null,
+        'phone_verify_token_expire' =>  $phoneActive ? Carbon::now()->addSeconds(300) : null,
     ];
 });

@@ -2,7 +2,12 @@
 
 namespace App\Entities;
 
+use App\Exceptions\IncorrectTokenException;
 use App\Exceptions\InvalidRoleException;
+use App\Exceptions\PhoneIsEmptyException;
+use App\Exceptions\PhoneTokenExpiredException;
+use App\Exceptions\PhoneVerificationAlreadyException;
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -39,13 +44,30 @@ use App\Exceptions\RoleAlreadyException;
  * @mixin \Eloquent
  * @property int $role
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User whereRole($value)
+ * @property string|null $last_name
+ * @property string|null $phone
+ * @property int $phone_verified
+ * @property string|null $phone_verify_token
+ * @property Carbon $phone_verify_token_expire
+ * @property-read mixed $role_name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User wherePhoneVerified($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User wherePhoneVerifyToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\User wherePhoneVerifyTokenExpire($value)
  */
 class User extends Authenticatable  implements MustVerifyEmail
 {
     use Notifiable;
 
+    /**
+     *
+     */
     const ROLE_USER = 1;
     const ROLE_ADMIN = 2;
+
+    const PHONE_VERIFY_TOKEN_EXPIRED = 300;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -71,6 +93,8 @@ class User extends Authenticatable  implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'phone_verify_token_expire' => 'datetime',
+        'phone_verified' => 'boolean',
     ];
 
     static public function rolesList(): array
@@ -81,7 +105,7 @@ class User extends Authenticatable  implements MustVerifyEmail
         ];
     }
 
-    public function getRoleNameAttribute()
+    public function getRoleNameAttribute(): string
     {
         if (!array_key_exists($this->role, self::rolesList())) {
             throw new InvalidRoleException('Undefined role "' . $this->role . '"');
@@ -118,12 +142,12 @@ class User extends Authenticatable  implements MustVerifyEmail
     /**
      * @return bool
      */
-    public function isAdmin()
+    public function isAdmin(): bool
     {
         return $this->role === self::ROLE_ADMIN;
     }
 
-    public function changeRole(int $role)
+    public function changeRole(int $role): void
     {
         if (!array_key_exists($role, self::rolesList())) {
             throw new InvalidRoleException('Undefined role "' . $role . '"');
@@ -133,5 +157,44 @@ class User extends Authenticatable  implements MustVerifyEmail
         }
 
         $this->update(['role' => $role]);
+    }
+
+    public function isPhoneVerified(): bool
+    {
+        return $this->phone_verified;
+    }
+
+    public function requestPhoneVerification(Carbon $now): string
+    {
+        if (empty($this->phone)) {
+            throw new PhoneIsEmptyException('Phone number is empty.');
+        }
+
+        if (!empty($this->phone_verify_token) && $this->phone_verify_token_expire && $this->phone_verify_token_expire->gt($now)) {
+            throw new PhoneVerificationAlreadyException('Token is already requested.');
+        }
+
+        $this->phone_verified = false;
+        $this->phone_verify_token = (string) random_int(10000, 99999);
+        $this->phone_verify_token_expire = $now->copy()->addSeconds(self::PHONE_VERIFY_TOKEN_EXPIRED);
+        $this->saveOrFail();
+
+        return $this->phone_verify_token;
+    }
+
+    public function verifyPhone(Carbon $now, $token): void
+    {
+        if ($token !== $this->phone_verify_token) {
+            throw new IncorrectTokenException('Token is incorrect');
+        }
+
+        if (!empty($this->phone_verify_token) && $this->phone_verify_token_expire && $this->phone_verify_token_expire->lt($now)) {
+            throw new PhoneTokenExpiredException('Token is expired.');
+        }
+
+        $this->phone_verified = true;
+        $this->phone_verify_token = null;
+        $this->phone_verify_token_expire = null;
+        $this->saveOrFail();
     }
 }
