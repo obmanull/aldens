@@ -61,9 +61,6 @@ class User extends Authenticatable  implements MustVerifyEmail
 {
     use Notifiable;
 
-    /**
-     *
-     */
     const ROLE_USER = 1;
     const ROLE_ADMIN = 2;
 
