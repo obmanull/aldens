@@ -24,8 +24,14 @@ Route::group(
     ],
     function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+
         Route::get('/profile', 'ProfileController@index')->name('profile.index');
+        Route::get('/profile/edit', 'ProfileController@edit')->name('profile.edit');
         Route::post('/profile/update/{user}', 'ProfileController@update')->name('profile.update');
+
+        Route::post('/phone/verify/request', 'PhoneController@request')->name('phone.verify.request');
+        Route::get('/phone/verify/form', 'PhoneController@form')->name('phone.verify.form');
+        Route::post('/phone/verify', 'PhoneController@verify')->name('phone.verify');
     }
 );
 

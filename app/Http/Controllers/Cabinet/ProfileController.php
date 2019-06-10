@@ -27,8 +27,15 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('cabinet.profile', compact('user'));
+        return view('cabinet.profile.index', compact('user'));
     }
+
+    public function edit()
+    {
+        $user = Auth::user();
+        return view('cabinet.profile.edit', compact('user'));
+    }
+
 
     public function update(Request $request, User $user)
     {
@@ -42,10 +49,10 @@ class ProfileController extends Controller
 
         $user->update($request->all());
 
-        if($oldPhone != $user->phone) {
+        if($oldPhone !== $user->phone) {
             $user->unverifyPhone();
         }
 
-        return back()->with('status', 'Profile update successful');
+        return redirect()->route('cabinet.profile.index')->with('status', 'Profile update successful');
     }
 }

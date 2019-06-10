@@ -48,6 +48,12 @@ Breadcrumbs::for('cabinet.profile.index', function ($trail) {
     $trail->push('Profile', route('cabinet.profile.index'));
 });
 
+// Home / Profile / Edit
+Breadcrumbs::for('cabinet.profile.edit', function ($trail) {
+    $trail->parent('cabinet.profile.index');
+    $trail->push('Edit', route('cabinet.profile.edit'));
+});
+
 
 // Admin panel
 

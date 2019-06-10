@@ -53,12 +53,13 @@ class ProfileTest extends TestCase
         $user = factory(User::class)->create();
         $user->markEmailAsVerified();
 
-        $newUser = factory(User::class)->make();
+        $newUser = factory(User::class)->make(['phone' => '79000000000']);
         $response = $this
             ->actingAs($user)
             ->post('cabinet/profile/update/' . $user->id, [
                 'last_name' => $newUser->last_name,
                 'name' => $newUser->name,
+                'phone' => $newUser->phone,
             ]);
 
 

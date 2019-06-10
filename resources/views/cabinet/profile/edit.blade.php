@@ -1,9 +1,6 @@
-@extends('layouts.app')
+@extends('cabinet.profile.layout')
 
-@section('content')
-    @include ('cabinet.partials._nav', ['page' => 'profile'])
-
-    <h4 class="header-title">Profile</h4>
+@section('main')
 
     <form action="{{ route('cabinet.profile.update', $user) }}" method="post">
         @csrf
