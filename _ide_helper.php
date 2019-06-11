@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.19 on 2019-06-06 14:00:08.
+ * Generated for Laravel 5.8.19 on 2019-06-10 16:04:36.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -350,17 +350,17 @@ namespace Illuminate\Support\Facades {
                         /** @var \Illuminate\Foundation\Application $instance */
                         return $instance->isLocal();
         }
-
+        
         /**
          * Determine if application is in production environment.
          *
-         * @return bool
-         * @static
+         * @return bool 
+         * @static 
          */ 
         public static function isProduction()
         {
-            /** @var \Illuminate\Foundation\Application $instance */
-            return $instance->isProduction();
+                        /** @var \Illuminate\Foundation\Application $instance */
+                        return $instance->isProduction();
         }
         
         /**
@@ -11651,19 +11651,19 @@ namespace Illuminate\Support\Facades {
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
                         $instance->dropIfExists($table);
         }
-
+        
         /**
          * Drop all types from the database.
          *
          * @return void 
          * @throws \LogicException
-         * @static
+         * @static 
          */ 
         public static function dropAllTypes()
         {
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
-            $instance->dropAllTypes();
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        $instance->dropAllTypes();
         }
         
         /**
@@ -15149,98 +15149,97 @@ namespace Barryvdh\Debugbar {
  
 }
 
-namespace DaveJamesMiller\Breadcrumbs\Facades {
+namespace DaveJamesMiller\Breadcrumbs\Facades { 
 
     /**
      * Breadcrumbs facade - allows easy access to the Manager instance.
      *
      * @see BreadcrumbsManager
-     */
-    class Breadcrumbs
-    {
-
+     */ 
+    class Breadcrumbs {
+        
         /**
          * Register a breadcrumb-generating callback for a page.
          *
          * @param string $name The name of the page.
          * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
          *     accept additional parameters.
-         * @return void
+         * @return void 
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
          *     used.
-         * @static
-         */
+         * @static 
+         */ 
         public static function for($name, $callback)
         {
-            /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
-            $instance->for($name, $callback);
+                        /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
+                        $instance->for($name, $callback);
         }
-
+        
         /**
          * Register a breadcrumb-generating callback for a page.
-         *
+         * 
          * For backwards-compatibility with v5.0.0 and below.
          *
+         * @see self::for()
          * @param string $name The name of the page.
          * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
          *     accept additional parameters.
-         * @return void
+         * @return void 
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
          *     used.
-         * @static
-         * @see self::for()
-         */
+         * @static 
+         */ 
         public static function register($name, $callback)
         {
-            /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
-            $instance->register($name, $callback);
+                        /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
+                        $instance->register($name, $callback);
         }
-
+        
         /**
          * Register a closure to call before generating breadcrumbs for the current page.
-         *
+         * 
          * For example, this can be used to always prepend the homepage without needing to manually add it to each page.
          *
          * @param callable $callback The callback, which should accept a Generator instance as the first and only parameter.
-         * @return void
-         * @static
-         */
+         * @return void 
+         * @static 
+         */ 
         public static function before($callback)
         {
-            /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
-            $instance->before($callback);
+                        /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
+                        $instance->before($callback);
         }
-
+        
         /**
          * Register a closure to call after generating breadcrumbs for the current page.
-         *
+         * 
          * For example, this can be used to append the current page number when using pagination.
          *
          * @param callable $callback The callback, which should accept a Generator instance as the first and only parameter.
-         * @return void
-         * @static
-         */
+         * @return void 
+         * @static 
+         */ 
         public static function after($callback)
         {
-            /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
-            $instance->after($callback);
+                        /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
+                        $instance->after($callback);
         }
-
+        
         /**
          * Check if a breadcrumb with the given name exists.
-         *
+         * 
          * If no name is given, defaults to the current route name.
          *
          * @param string|null $name The page name.
          * @return bool Whether there is a registered callback with that name.
-         * @static
-         */
+         * @static 
+         */ 
         public static function exists($name = null)
         {
-            /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
-            return $instance->exists($name);
+                        /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
+                        return $instance->exists($name);
         }
-
+        
         /**
          * Generate a set of breadcrumbs for a page.
          *
@@ -15251,14 +15250,14 @@ namespace DaveJamesMiller\Breadcrumbs\Facades {
          *     doesn't have an associated name.
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names
          *     are) not registered.
-         * @static
-         */
+         * @static 
+         */ 
         public static function generate($name = null, $params = null)
         {
-            /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
-            return $instance->generate($name, $params);
+                        /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
+                        return $instance->generate($name, $params);
         }
-
+        
         /**
          * Render breadcrumbs for a page with the specified view.
          *
@@ -15269,14 +15268,14 @@ namespace DaveJamesMiller\Breadcrumbs\Facades {
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route doesn't have an associated name.
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\ViewNotSetException if no view has been set.
-         * @static
-         */
+         * @static 
+         */ 
         public static function view($view, $name = null, $params = null)
         {
-            /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
-            return $instance->view($view, $name, $params);
+                        /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
+                        return $instance->view($view, $name, $params);
         }
-
+        
         /**
          * Render breadcrumbs for a page with the default view.
          *
@@ -15286,99 +15285,99 @@ namespace DaveJamesMiller\Breadcrumbs\Facades {
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route doesn't have an associated name.
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\ViewNotSetException if no view has been set.
-         * @static
-         */
+         * @static 
+         */ 
         public static function render($name = null, $params = null)
         {
-            /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
-            return $instance->render($name, $params);
+                        /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
+                        return $instance->render($name, $params);
         }
-
+        
         /**
          * Get the last breadcrumb for the current page.
-         *
+         * 
          * Optionally pass a
          *
          * @return \stdClass|null The breadcrumb for the current page.
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if the current route doesn't have an associated name.
          * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
-         * @static
-         */
+         * @static 
+         */ 
         public static function current()
         {
-            /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
-            return $instance->current();
+                        /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
+                        return $instance->current();
         }
-
+        
         /**
          * Set the current route name and parameters to use when calling render() or generate() with no parameters.
          *
          * @param string $name The name of the current page.
          * @param mixed $params The parameters to pass to the closure for the current page.
-         * @return void
-         * @static
-         */
+         * @return void 
+         * @static 
+         */ 
         public static function setCurrentRoute($name, $params = null)
         {
-            /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
-            $instance->setCurrentRoute($name, $params);
+                        /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
+                        $instance->setCurrentRoute($name, $params);
         }
-
+        
         /**
          * Clear the previously set route name and parameters to use when calling render() or generate() with no parameters.
-         *
+         * 
          * Next time it will revert to the default behaviour of using the current route from Laravel.
          *
-         * @return void
-         * @static
-         */
+         * @return void 
+         * @static 
+         */ 
         public static function clearCurrentRoute()
         {
-            /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
-            $instance->clearCurrentRoute();
+                        /** @var \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager $instance */
+                        $instance->clearCurrentRoute();
         }
-
+        
         /**
          * Register a custom macro.
          *
          * @param string $name
          * @param object|callable $macro
-         * @return void
-         * @static
-         */
+         * @return void 
+         * @static 
+         */ 
         public static function macro($name, $macro)
         {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::macro($name, $macro);
+                        \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::macro($name, $macro);
         }
-
+        
         /**
          * Mix another object into the class.
          *
          * @param object $mixin
          * @param bool $replace
-         * @return void
+         * @return void 
          * @throws \ReflectionException
-         * @static
-         */
+         * @static 
+         */ 
         public static function mixin($mixin, $replace = true)
         {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::mixin($mixin, $replace);
+                        \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::mixin($mixin, $replace);
         }
-
+        
         /**
          * Checks if macro is registered.
          *
          * @param string $name
-         * @return bool
-         * @static
-         */
+         * @return bool 
+         * @static 
+         */ 
         public static function hasMacro($name)
         {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::hasMacro($name);
+                        return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::hasMacro($name);
         }
-
+         
     }
-
+ 
 }
 
 
@@ -18036,10 +18035,8 @@ namespace  {
 
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
 
-    class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs
-    {
-    }
-
+    class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
+ 
 }
 
 

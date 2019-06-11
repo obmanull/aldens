@@ -1,6 +1,6 @@
 <?php
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 use App\Entities\User;

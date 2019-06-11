@@ -7,7 +7,7 @@ use App\Exceptions\InvalidRoleException;
 use App\Exceptions\PhoneIsEmptyException;
 use App\Exceptions\PhoneTokenExpiredException;
 use App\Exceptions\PhoneVerificationAlreadyException;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;

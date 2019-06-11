@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Cabinet;
 
-use App\Entities\User;
-use Carbon\Carbon;
+use App\Services\Sms\SmsSender;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class PhoneController extends Controller
 {
+    private $sms;
     /**
-     * Create a new controller instance.
-     *
      * @return void
      */
-    public function __construct()
+    public function __construct(SmsSender $sms)
     {
+        $this->sms = $sms;
         $this->middleware('auth');
     }
 
@@ -26,8 +26,9 @@ class PhoneController extends Controller
 
         try {
             $token = $user->requestPhoneVerification(Carbon::now());
+            $this->sms->send($user->phone, 'Phone verification token '. $token);
         } catch (\Throwable $e) {
-            return $request->session()->flash('error', $e->getMessage());
+            return back()->with('error', $e->getMessage());
         }
 
         return redirect()->route('cabinet.phone.verify.form');

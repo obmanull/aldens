@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\Sms\SmsRu;
+use App\Services\Sms\SmsSender;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +16,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(SmsSender::class, function (Application $app) {
+            $config = $app->make('config')->get('sms');
+
+            switch ($config['driver']){
+                case 'sms.ru':
+                    $params = $config['drivers']['sms.ru'];
+                    return new SmsRu($params['app_id'], $params['url']);
+            }
+
+            return new SmsRu(config('sms.app_id'), config('sms.url', 'https://sms.ru/sms/send'));
+        });
     }
 
     /**

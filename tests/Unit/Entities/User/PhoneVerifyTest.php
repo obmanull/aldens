@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use App\Entities\User;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
@@ -19,6 +19,7 @@ class PhoneVerifyTest extends TestCase
     {
         $user = factory(User::class)->create([
             'phone_verify_token' => $token = 'token',
+            'phone_verify_token_expire' => Carbon::now()->addSeconds(User::PHONE_TOKEN_EXPIRED)
         ]);
 
         $user->verifyPhone(Carbon::now(), $token);
@@ -48,11 +49,11 @@ class PhoneVerifyTest extends TestCase
             'phone' => "79000000000",
             'phone_verified' => false,
             'phone_verify_token' => $token = 'token',
-            'phone_verify_token_expire' => $now = Carbon::now()->addSecond(User::PHONE_TOKEN_EXPIRED),
+            'phone_verify_token_expire' => $now = Carbon::now()->addSeconds(User::PHONE_TOKEN_EXPIRED),
         ]);
 
         $this->expectExceptionMessage('Token is expired.');
-        $user->verifyPhone($now->copy()->addSecond(User::PHONE_TOKEN_EXPIRED + 1), $token);
+        $user->verifyPhone($now->copy()->addSeconds(User::PHONE_TOKEN_EXPIRED + 1), $token);
     }
 
 }
